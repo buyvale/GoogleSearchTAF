@@ -31,14 +31,14 @@ namespace Google.Search.Automation.Framework.PageObjects.SearchResults
             return isContains;
         }
 
-        public bool SearchResultOnParticularSiteShouldContainsPhraseOnTheHeaders(string text)
+        public bool SearchResultOnParticularSiteShouldContainsPhraseInTheHeaders(string text)
         {
             string phrase = text.Split(' ')[0];
             IList<IWebElement> location = Mappings.SearchResult_HeadersList;
             return SearchResultsShouldContainsTextOnLocation(phrase, location);
         }
 
-        public bool SearchResultOnParticularSiteShouldContainssiteNameOnTheLinks(string text)
+        public bool SearchResultOnParticularSiteShouldPointedToTargetResource(string text)
         {
             string link = text.Split(':').Last();
             IList<IWebElement> location = Mappings.SearchResult_LinksList;

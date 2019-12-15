@@ -26,7 +26,8 @@ namespace Google.Search.UI.Tests.Tests
         {
             Pages.Home.SearchForAndSubmitBySearchButton(text);
             Assert.IsTrue(Pages.SearchResults.
-                SearchResulShouldContainsPhraseOnTheHeaders(text), "Searchig phrase is not contains in all results");
+                SearchResulShouldContainsPhraseOnTheHeaders(text), 
+                "Searchig phrase is not contains in all results");
         }
 
         [Test]
@@ -37,16 +38,18 @@ namespace Google.Search.UI.Tests.Tests
         {
             Pages.Home.SearchForAndSubmitByEnterKey(text);
             Assert.IsTrue(Pages.SearchResults.
-                SearchResultOnParticularSiteShouldContainsPhraseOnTheHeaders(text), "Searchig phrase is not contains in all results");
+                SearchResultOnParticularSiteShouldContainsPhraseInTheHeaders(text), 
+                "Searchig phrase is not contains in all results");
             Assert.IsTrue(Pages.SearchResults.
-                SearchResultOnParticularSiteShouldContainssiteNameOnTheLinks(text), "Link to the target site is not contains in all results ");
+                SearchResultOnParticularSiteShouldPointedToTargetResource(text), 
+                "Link to the target site is not contains in all results ");
         }
 
         [Test]
         [Description("Search for 'cheese' and limit search reluts on the page")]
         [Author("Aleksey Buivalenko")]
 
-        public void UserSearchForPhraseAndWhantToReceiveFirstNResults([Values(2,3,4,5,6,7)] int results_quantity)
+        public void UserSearchForPhraseAndWhantToReceiveFirstNResults([Range(0, 10)] int results_quantity)
         {
             Pages.SearchResults.SearchForAndLimitSearchResults("Cheese", results_quantity);
             Assert.AreEqual(results_quantity, Pages.SearchResults.SearchResultsQuantityOnThePage(4));
